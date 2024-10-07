@@ -30,19 +30,60 @@ const gameBoard = (function() {
 
 const game = (function() {
     let newGameBoard = gameBoard.gameBoardArray;
+
+    function gameStart(){
+
+        players.playerX.name = prompt("Enter name for X");
+        console.log(players.playerX.name);
+
+        players.playerO.name = prompt("Enter name for O");
+        console.log(players.playerO.name);
+
+        while (whoWin() === false){
+            makeMove(players.playerX, prompt("What your move? (X)"));
+            console.log(newGameBoard);
+            if (whoWin() === true){
+                return whoWin();
+            }
+            makeMove(players.playerO, prompt("What your move? (O)"));
+            console.log(newGameBoard);
+        }
+
+        function whoWin(){
+            if (check() === "X"){
+                console.log(`${players.playerX.name} win`)
+                return true
+            }
+            else if (check() === "O"){
+                console.log(`${players.playerO.name} win`)
+                return true
+            }
+            else if (check() === "Draw"){
+                console.log(`Draw`)
+                return true
+            }
+            return false;
+        }
+
+    }
      
     function makeMove(player, number){
+        if (newGameBoard[number] != ""){
+            return "busy";
+        }
+
         if (player.sign === "X"){
             newGameBoard[number] = "X"
         }
         else {
             newGameBoard[number] = "O";
         }
-        console.log(newGameBoard);
+
         return newGameBoard;
     }
 
-    function whoWin(){
+    function check(){
+        let status;
         if ((newGameBoard[0] === "X" && newGameBoard[1] === "X" && newGameBoard[2] === "X") ||
             (newGameBoard[3] === "X" && newGameBoard[4] === "X" && newGameBoard[5] === "X") ||
             (newGameBoard[6] === "X" && newGameBoard[7] === "X" && newGameBoard[8] === "X") ||
@@ -52,7 +93,7 @@ const game = (function() {
             (newGameBoard[0] === "X" && newGameBoard[4] === "X" && newGameBoard[8] === "X") ||
             (newGameBoard[2] === "X" && newGameBoard[4] === "X" && newGameBoard[6] === "X")
         ){
-            console.log("PLAYER X WIN")
+            status = "X";
         }
         else if ((newGameBoard[0] === "O" && newGameBoard[1] === "O" && newGameBoard[2] === "O") ||
         (newGameBoard[3] === "O" && newGameBoard[4] === "O" && newGameBoard[5] === "O") ||
@@ -63,12 +104,26 @@ const game = (function() {
         (newGameBoard[0] === "O" && newGameBoard[4] === "O" && newGameBoard[8] === "O") ||
         (newGameBoard[2] === "O" && newGameBoard[4] === "O" && newGameBoard[6] === "O")
         ){
-            console.log("PLAYER O WIN")
+            status = "O";
+        }
+        else if (
+            newGameBoard[0] !== "" &&
+            newGameBoard[1] !== "" &&
+            newGameBoard[2] !== "" &&
+            newGameBoard[3] !== "" &&
+            newGameBoard[4] !== "" &&
+            newGameBoard[5] !== "" &&
+            newGameBoard[6] !== "" &&
+            newGameBoard[7] !== "" &&
+            newGameBoard[9] !== ""
+        ){
+            status = "Draw";
         }
         else {
-            console.log("NOBODY WIN")
+            status = "Next";
         }
+        return status;
     }
 
-    return {makeMove, whoWin, newGameBoard};
+    return {gameStart, makeMove, check};
 })()
