@@ -2,17 +2,11 @@ const players = (function(){
     const playerX = {
         name: "Player",
         sign: "X",
-        chooseName: function(name) {
-            this.name = name;
-        } 
     }
 
     const playerO = {
         name: "Player2",
         sign: "O",
-        chooseName: function(name) {
-            this.name = name;
-        } 
     }
 
     return {playerX, playerO};    
@@ -30,52 +24,9 @@ const gameBoard = (function() {
 
 const game = (function() {
     let newGameBoard = gameBoard.gameBoardArray;
-
-    function gameStart(){
-
-        players.playerX.name = prompt("Enter name for X");
-        console.log(players.playerX.name);
-
-        players.playerO.name = prompt("Enter name for O");
-        console.log(players.playerO.name);
-
-        while (whoWin() === false){
-            makeMove(players.playerX, prompt("What your move? (X)"));
-            console.log(newGameBoard);
-            dom.newArea();
-            if (whoWin() === true){
-                return whoWin();
-            }
-            makeMove(players.playerO, prompt("What your move? (O)"));
-            console.log(newGameBoard);
-            dom.newArea();
-        }
-        dom.newArea();
-    
-
-        function whoWin(){
-            if (check() === "X"){
-                console.log(`${players.playerX.name} win`)
-                return true
-            }
-            else if (check() === "O"){
-                console.log(`${players.playerO.name} win`)
-                return true
-            }
-            else if (check() === "Draw"){
-                dom.status.textContent = "Draw!"
-                return true
-            }
-            return false;
-        }
-
-    }
      
     function makeMove(player, number){
-        if (newGameBoard[number] != ""){
-            return "busy";
-        }
-
+        
         if (player.sign === "X"){
             newGameBoard[number] = "X"
         }
@@ -129,17 +80,15 @@ const game = (function() {
         return status;
     }
 
-    return {gameStart, makeMove, check, newGameBoard};
+    return {makeMove, check, newGameBoard};
 })()
 
 const dom = (function() {
     const status = document.querySelector(".status");
     const area = document.querySelectorAll(".area");
-    console.log(area);
     
     const newArea = function(){
         area.forEach(function(element, index){
-            console.log(game.newGameBoard[index]);
             element.textContent = `${game.newGameBoard[index]}`;
         })
     }
