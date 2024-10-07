@@ -172,5 +172,15 @@ const dom = (function() {
         })
     })
 
-    return {newArea, area};
+    const player1name = document.querySelector("#name1")
+    const player2name = document.querySelector("#name2")
+    const startButton = document.querySelector("#start")
+
+    startButton.addEventListener('click', (event) => {
+        event.preventDefault();
+        players.playerX.name = player1name.value;
+        players.playerO.name = player2name.value;
+    })
+
+    return {newArea, area, player1name, player2name, startButton};
 })()
