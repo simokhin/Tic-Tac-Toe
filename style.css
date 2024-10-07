@@ -1,22 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap');
+
+:root {
+    --background: #FAF7F0;
+    --light: #D8D2C2;
+    --accent: #B17457;
+    --dark: #4A4947;
+}
+
+body {
+    font-family: "Dancing Script", cursive;
+    background-color: var(--background);
+}
+
+header {
+    border-bottom: 5px solid var(--dark);
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+}
+
+header h1 {
+    width: 80%;
+    margin: auto;
+    color: #4A4947;
+}
+
+main {
+    width: 80%;
+    margin: auto;
+    height: 100vh;
+}
+
+.form {
+    padding-bottom: 1rem;
+}
+
+.form form {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+label {
+    margin-right: 0.5rem;
+}
+
+#start {
+    background-color: var(--dark);
+    padding: 5px 10px;
+    border: none;
+    border-radius: 10px;
+    color: var(--background);
+}
+
+input {
+    background-color: var(--light);
+    border: 1px solid var(--dark);
+    border-radius: 10px;
+}
+
+.content {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: start;
+    gap: 2rem;
+}
+
+.status {
+    flex-basis: 50%;
+    font-size: 2rem;
+    transition: all 0.5s;
+}
+
 .game {
-    width: 500px;
-    height: 500px;
+    flex-basis: 400px;
+    height: 400px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
 }
 
 .area {
-    background-color: blueviolet;
-    border: 1px solid black;
+    background-color: var(--dark);
+    border: 1px solid var(--accent);
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 2rem;
     font-weight: bold;
-    color: white;
+    color: var(--background);
 }
 
 button:hover {
     opacity: 0.9;
+    transition: all 0.3s;
     cursor: pointer;
+}
+
+button:active {
+    opacity: 0.8;
+    transition: all 0.3s;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    background-color: var(--dark);
+}
+
+a {
+    color: var(--background);
+    text-decoration: none;
+}
+
+a:hover {
+    opacity: 0.8;
 }

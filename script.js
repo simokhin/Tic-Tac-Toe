@@ -63,7 +63,7 @@ const game = (function() {
                 return true
             }
             else if (check() === "Draw"){
-                console.log(`Draw`)
+                dom.status.textContent = "Draw!"
                 return true
             }
             return false;
@@ -133,6 +133,7 @@ const game = (function() {
 })()
 
 const dom = (function() {
+    const status = document.querySelector(".status");
     const area = document.querySelectorAll(".area");
     console.log(area);
     
@@ -160,13 +161,13 @@ const dom = (function() {
             score++;
 
             if (game.check() === "X"){
-                alert(`${players.playerX.name} win!`)
+                status.textContent = `${players.playerX.name} win!`
             }
             else if (game.check() === "O"){
-                alert(`${players.playerO.name} win`)
+                status.textContent = `${players.playerO.name} win!`
             }
             else if (game.check() === "Draw"){
-                alert(`Draw`)
+                status.textContent = `Draw`
             }
             element.disabled = true;
         })
@@ -182,5 +183,5 @@ const dom = (function() {
         players.playerO.name = player2name.value;
     })
 
-    return {newArea, area, player1name, player2name, startButton};
+    return {newArea, area, status};
 })()
