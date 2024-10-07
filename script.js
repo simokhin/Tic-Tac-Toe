@@ -162,6 +162,7 @@ const dom = (function() {
 
             if (game.check() === "X"){
                 status.textContent = `${players.playerX.name} win!`
+                
             }
             else if (game.check() === "O"){
                 status.textContent = `${players.playerO.name} win!`
