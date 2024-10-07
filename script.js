@@ -144,9 +144,30 @@ const dom = (function() {
     }
     newArea();
 
+    let score = 2;
+
     area.forEach((element, key) => {
         element.addEventListener("click", () => {
-            
+            if ((score % 2) === 0){
+                game.makeMove(players.playerX, key);
+                newArea();
+            }
+            else {
+                game.makeMove(players.playerO, key);
+                newArea();
+            }
+
+            score++;
+
+            if (game.check() === "X"){
+                alert(`${players.playerX.name} win!`)
+            }
+            else if (game.check() === "O"){
+                alert(`${players.playerO.name} win`)
+            }
+            else if (game.check() === "Draw"){
+                alert(`Draw`)
+            }
         })
     })
 
