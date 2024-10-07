@@ -168,6 +168,7 @@ const dom = (function() {
             else if (game.check() === "Draw"){
                 alert(`Draw`)
             }
+            element.disabled = true;
         })
     })
 
