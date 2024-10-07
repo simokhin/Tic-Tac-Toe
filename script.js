@@ -42,12 +42,16 @@ const game = (function() {
         while (whoWin() === false){
             makeMove(players.playerX, prompt("What your move? (X)"));
             console.log(newGameBoard);
+            dom.newArea();
             if (whoWin() === true){
                 return whoWin();
             }
             makeMove(players.playerO, prompt("What your move? (O)"));
             console.log(newGameBoard);
+            dom.newArea();
         }
+        dom.newArea();
+    
 
         function whoWin(){
             if (check() === "X"){
@@ -125,5 +129,26 @@ const game = (function() {
         return status;
     }
 
-    return {gameStart, makeMove, check};
+    return {gameStart, makeMove, check, newGameBoard};
+})()
+
+const dom = (function() {
+    const area = document.querySelectorAll(".area");
+    console.log(area);
+    
+    const newArea = function(){
+        area.forEach(function(element, index){
+            console.log(game.newGameBoard[index]);
+            element.textContent = `${game.newGameBoard[index]}`;
+        })
+    }
+    newArea();
+
+    area.forEach((element, key) => {
+        element.addEventListener("click", () => {
+            
+        })
+    })
+
+    return {newArea, area};
 })()

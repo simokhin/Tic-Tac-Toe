@@ -1,0 +1,22 @@
+.game {
+    width: 500px;
+    height: 500px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.area {
+    background-color: blueviolet;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    font-weight: bold;
+    color: white;
+}
+
+button:hover {
+    opacity: 0.9;
+    cursor: pointer;
+}
